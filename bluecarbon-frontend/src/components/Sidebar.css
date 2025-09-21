@@ -1,0 +1,145 @@
+/* Sidebar Container */
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: -280px;
+  width: 280px;
+  height: calc(100vh - 70px);
+  background: #fff;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: left 0.3s ease;
+  z-index: 900;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+/* Header */
+.sidebar-header {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.version {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  margin-top: 0.3rem;
+}
+
+/* Navigation */
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  color: #2c3e50;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  gap: 1rem;
+}
+
+.nav-item i {
+  width: 20px;
+  text-align: center;
+}
+
+.nav-item:hover {
+  background: #f1f5f8;
+  color: #3498db;
+}
+
+.nav-item.active {
+  background: #eaf2fb;
+  color: #3498db;
+  border-right: 3px solid #3498db;
+}
+
+.nav-item.active i {
+  color: #3498db;
+}
+
+/* Stats Section */
+.sidebar-stats {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #eee;
+  background: #f9f9f9;
+}
+
+.stat-item {
+  margin-bottom: 0.8rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Footer */
+.sidebar-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.help-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #7f8c8d;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.help-button:hover {
+  background: #3498db;
+  color: #fff;
+  border-color: #3498db;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 240px;
+    left: -240px;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .nav-item {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .stat-value {
+    font-size: 1rem;
+  }
+}

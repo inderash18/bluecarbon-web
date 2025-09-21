@@ -17,12 +17,45 @@ body {
 }
 
 /* App Layout */
-.dashboard {
+.app {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  background-color: #f8f9fa;
 }
 
+.main-container {
+  flex: 1;
+  display: flex;
+  margin-top: 70px; /* Height of header */
+  position: relative;
+}
+
+.content {
+  flex: 1;
+  min-height: calc(100vh - 70px); /* Full height minus header */
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  width: 100%;
+  overflow-x: hidden;
+  padding: 2rem;
+}
+
+/* When sidebar is open */
+.sidebar.open + .content {
+  margin-left: 300px;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 1rem;
+  }
+  
+  .sidebar.open + .content {
+    margin-left: 260px;
+  }
+}
+ 
 /* Header */
 .header {
   background: #1d3557;

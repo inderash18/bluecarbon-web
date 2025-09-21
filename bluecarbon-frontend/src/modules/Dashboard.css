@@ -1,0 +1,279 @@
+.dashboard {
+  padding: 2rem;
+  background: #f8f9fa;
+  min-height: calc(100vh - 70px);
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Stats Section */
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e3f2fd;
+  color: #3498db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.stat-content h3 {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.stat-value {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.stat-change {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.stat-change.positive {
+  color: #2ecc71;
+}
+
+.stat-info {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* Activities Section */
+.activities-section {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.activities-section h2 {
+  margin: 0 0 1.5rem;
+  color: #2c3e50;
+  font-size: 1.25rem;
+}
+
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #f8f9fa;
+  transition: background-color 0.2s ease;
+}
+
+.activity-item:hover {
+  background: #e9ecef;
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e3f2fd;
+  color: #3498db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-content h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.activity-content p {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.activity-amount {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.activity-meta {
+  text-align: right;
+}
+
+.activity-date {
+  display: block;
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.activity-status {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.activity-status.completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.activity-status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.activity-status.in-progress {
+  background: #cce5ff;
+  color: #004085;
+}
+
+/* Projects Section */
+.projects-section {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.projects-section h2 {
+  margin: 0 0 1.5rem;
+  color: #2c3e50;
+  font-size: 1.25rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+}
+
+.project-header {
+  margin-bottom: 1rem;
+}
+
+.project-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.125rem;
+}
+
+.project-location {
+  display: block;
+  margin-top: 0.5rem;
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.project-location i {
+  margin-right: 0.5rem;
+}
+
+.project-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.project-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.stat-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #3498db;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 1rem;
+  }
+
+  .stats-section {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    padding: 1rem;
+  }
+
+  .activity-meta {
+    display: none;
+  }
+}

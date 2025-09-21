@@ -1,0 +1,144 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  padding: 0 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header.scrolled {
+  height: 60px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #0078ef;
+  transition: color 0.2s ease;
+}
+
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0180ff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+
+
+.header-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: #0080ff;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.header-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #3498db;
+  transition: width 0.2s ease;
+}
+
+.header-nav a:hover::after {
+  width: 100%;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.connect-wallet-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.connect-wallet-btn:hover {
+  background: #2980b9;
+}
+
+.wallet-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #e9ecef;
+}
+
+.wallet-address {
+  font-family: monospace;
+  color: #2c3e50;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #2ecc71;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2ecc71;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1rem;
+  }
+
+  .header-nav {
+    display: none;
+  }
+
+  .wallet-info {
+    padding: 0.5rem;
+  }
+
+  .wallet-address {
+    display: none;
+  }
+}
