@@ -1,0 +1,177 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9fafb;
+  color: #1f2937;
+}
+
+/* App Layout */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header */
+.header {
+  background: #1d3557;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header .logo {
+  width: 40px;
+  height: 40px;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.header-nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #f1f5f9;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.header-nav a:hover {
+  color: #a8dadc;
+}
+
+/* Main Layout */
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: #457b9d;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #1d3557;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s;
+}
+
+.sidebar button:hover {
+  background: #a8dadc;
+  color: #1d3557;
+}
+
+/* Page Content */
+.page-content {
+  flex: 1;
+  padding: 24px;
+  background: #f9fafb;
+  overflow-y: auto;
+}
+
+/* Footer */
+.footer {
+  background: #1d3557;
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.footer p:first-child {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+/* Modules */
+.module-box {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.primary-btn {
+  background: #059669;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.primary-btn:hover {
+  background: #047857;
+  transform: scale(1.05);
+}
+
+.secondary-btn {
+  background: #e5e7eb;
+  color: #1f2937;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.secondary-btn:hover {
+  background: #d1d5db;
+}
+
+/* File Input */
+.file-input {
+  margin-bottom: 12px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
