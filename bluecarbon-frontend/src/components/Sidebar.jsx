@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 
@@ -6,28 +6,74 @@ const Sidebar = ({ isOpen, onClose }) => {
   const location = useLocation();
 
   const menuItems = [
-    { path: '/', label: 'Dashboard', icon: 'fas fa-tachometer-alt' },
+    { path: '/dashboard', label: 'Dashboard', icon: 'fas fa-tachometer-alt' },
     { path: '/map', label: 'Map View', icon: 'fas fa-map' },
     { path: '/upload', label: 'Upload', icon: 'fas fa-upload' },
     { path: '/tokens', label: 'Tokens', icon: 'fas fa-coins' },
+    { path: '/webcam', label: 'WebCam', icon: 'fas fa-camera' }
   ];
 
+  // Close sidebar when route changes (useful for mobile)
+  useEffect(() => {
+    onClose();
+  }, [location.pathname, onClose]);
+
+  // Close sidebar on escape key press
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen, onClose]);
+
+  // Prevent body scroll when sidebar is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   return (
-    <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-      <button className="close-btn" onClick={onClose}>
-        <i className="fas fa-times"></i>
-      </button>
-      <ul className="sidebar-menu">
-        {menuItems.map(item => (
-          <li key={item.path} className={location.pathname === item.path ? 'active' : ''}>
-            <Link to={item.path}>
-              <i className={item.icon}></i>
-              {item.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      {/* Overlay */}
+      {isOpen && <div className="sidebar-overlay" onClick={onClose} />}
+      
+      <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+        <div className="sidebar-header">
+          <h3>Navigation</h3>
+          <button className="close-btn" onClick={onClose} aria-label="Close menu">
+            <i className="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <nav>
+          <ul className="sidebar-menu">
+            {menuItems.map(item => (
+              <li key={item.path} className={location.pathname === item.path ? 'active' : ''}>
+                <Link to={item.path}>
+                  <i className={item.icon}></i>
+                  <span>{item.label}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        
+        <div className="sidebar-footer">
+          <div className="app-version">v1.0.0</div>
+        </div>
+      </div>
+    </>
   );
 };
 

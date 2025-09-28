@@ -1,7 +1,7 @@
 /* Dashboard.css */
 .dashboard {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: var(--bg-gradient);
   padding: 2rem;
 }
 
@@ -15,12 +15,12 @@
 .header-content h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #2c3e50;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .header-content p {
-  color: #7f8c8d;
+  color: var(--text-secondary);
   margin: 0.5rem 0 0 0;
 }
 
@@ -32,34 +32,37 @@
 .btn-primary, .btn-secondary {
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s var(--transition-timing);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  box-shadow: var(--button-shadow);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--accent-gradient);
+  color: var(--text-on-accent);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  box-shadow: var(--button-shadow-hover);
 }
 
 .btn-secondary {
-  background: white;
-  color: #2c3e50;
-  border: 2px solid #e0e6ed;
+  background: var(--glass-gradient);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  color: var(--text-primary);
 }
 
 .btn-secondary:hover {
-  border-color: #667eea;
   transform: translateY(-2px);
+  box-shadow: var(--glass-shadow-hover);
+  color: var(--accent-color);
 }
 
 .dashboard-grid {
@@ -81,9 +84,11 @@
   border-radius: 20px;
   padding: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .stat-card::before {
@@ -278,12 +283,27 @@
   padding: 1rem;
   border-radius: 12px;
   background: #f8f9fa;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  border-left: 4px solid transparent;
 }
 
 .activity-item:hover {
   background: #e9ecef;
   transform: translateX(5px);
+  border-left-color: #667eea;
+}
+
+.activity-item.completed {
+  border-left-color: #2ecc71;
+}
+
+.activity-item.pending {
+  border-left-color: #f39c12;
+}
+
+.activity-item.in-progress {
+  border-left-color: #3498db;
 }
 
 .activity-icon {
@@ -361,6 +381,26 @@
   border-color: #667eea;
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
+}
+
+.project-card:hover .project-badge {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.project-card:hover .progress-fill {
+  animation: progressPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes progressPulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .project-header {
@@ -535,8 +575,54 @@
   }
 }
 
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .dashboard-grid > * {
   animation: fadeInUp 0.6s ease-out;
+}
+
+.activities-section {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.projects-section {
+  animation: slideInRight 0.8s ease-out;
+}
+
+.stat-card:hover .stat-icon {
+  animation: pulse 1s ease-in-out infinite;
 }
 
 /* Scrollbar Styling */

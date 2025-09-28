@@ -4,11 +4,14 @@
   left: -250px;
   width: 250px;
   height: 100%;
-  background-color: #222;
-  color: #fff;
-  transition: left 0.3s ease;
+  background: var(--glass-gradient);
+  backdrop-filter: var(--glass-blur);
+  border-right: var(--glass-border);
+  color: var(--text-primary);
+  transition: all 0.3s var(--transition-timing);
   z-index: 999;
   padding-top: 70px;
+  box-shadow: var(--glass-shadow);
 }
 
 .sidebar.open {
@@ -21,9 +24,14 @@
   right: 10px;
   background: none;
   border: none;
-  color: #fff;
+  color: var(--text-primary);
   font-size: 20px;
   cursor: pointer;
+  transition: color 0.2s var(--transition-timing);
+}
+
+.close-btn:hover {
+  color: var(--accent-color);
 }
 
 .sidebar-menu {
@@ -33,20 +41,58 @@
 
 .sidebar-menu li {
   padding: 15px 20px;
+  transition: background-color 0.2s var(--transition-timing);
+  border-radius: var(--border-radius);
+  margin: 5px 10px;
 }
 
 .sidebar-menu li.active,
 .sidebar-menu li:hover {
-  background-color: #444;
+  background-color: var(--glass-highlight);
 }
 
 .sidebar-menu a {
-  color: #fff;
+  color: var(--text-primary);
   text-decoration: none;
   display: flex;
   align-items: center;
+  gap: 10px;
+  transition: color 0.2s var(--transition-timing);
+}
+
+.sidebar-menu a:hover {
+  color: var(--accent-color);
 }
 
 .sidebar-menu i {
   margin-right: 10px;
+}
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.app-version {
+  font-size: 0.8rem;
+  color: #666;
+  text-align: center;
 }

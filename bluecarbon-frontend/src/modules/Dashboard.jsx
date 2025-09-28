@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const [projectStats, setProjectStats] = useState({
+  const { ref: statsRef, inView: statsInView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref: chartRef, inView: chartInView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref: projectsRef, inView: projectsInView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref: activitiesRef, inView: activitiesInView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  const [projectStats] = useState({
     totalCarbon: '25,000',
     monthlyCarbon: '2,500',
     verifiedCredits: '15,000',
@@ -13,6 +20,18 @@ const Dashboard = () => {
     carbonTrend: 12.5,
     verificationRate: 85
   });
+
+  const [chartData] = useState([
+    { name: 'Jan', carbon: 4000 },
+    { name: 'Feb', carbon: 3000 },
+    { name: 'Mar', carbon: 5000 },
+    { name: 'Apr', carbon: 4500 },
+    { name: 'May', carbon: 6000 },
+    { name: 'Jun', carbon: 5500 },
+    { name: 'Jul', carbon: 7000 },
+    { name: 'Aug', carbon: 6500 },
+    { name: 'Sep', carbon: 8000 }
+  ]);
 
   const [recentActivities] = useState([
     { id: 1, type: 'verification', project: 'Mangrove Project A', status: 'completed', date: '2025-09-20', amount: '5,000', time: '2 hours ago' },

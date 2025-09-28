@@ -2,13 +2,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background: #111;
-  color: #fff;
+  padding: 1rem 2rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border);
+  color: var(--text-primary);
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
+  transition: var(--transition-normal);
 }
 
 .header-left {
@@ -19,22 +22,42 @@
 .menu-button {
   background: none;
   border: none;
-  color: #fff;
-  font-size: 20px;
-  margin-right: 15px;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  margin-right: 1rem;
   cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.menu-button:hover {
+  color: var(--accent-color);
+  transform: scale(1.1);
 }
 
 .logo {
-  font-size: 24px;
-  color: #fff;
+  font-size: 1.5rem;
+  color: var(--text-primary);
   text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition-normal);
+}
+
+.logo:hover {
+  color: var(--accent-color);
 }
 
 .header-nav a {
-  color: #fff;
+  color: var(--text-primary);
   text-decoration: none;
-  margin: 0 10px;
+  margin: 0 1rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: var(--transition-normal);
+}
+
+.header-nav a:hover {
+  background: var(--glass-bg);
+  color: var(--accent-color);
 }
 
 .header-right {
@@ -43,12 +66,20 @@
 }
 
 .connect-wallet-btn {
-  padding: 5px 15px;
-  background-color: #0f9d58;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
+  padding: 0.5rem 1.25rem;
+  background: var(--accent-color);
+  color: var(--text-primary);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition: var(--transition-normal);
+  font-weight: 500;
   cursor: pointer;
+}
+
+.connect-wallet-btn:hover {
+  background: transparent;
+  border-color: var(--accent-color);
+  transform: translateY(-1px);
 }
 
 .wallet-info {
@@ -72,4 +103,27 @@
   border-radius: 50%;
   margin-right: 5px;
   background-color: green;
+}
+/* Add active state for nav links */
+.header-nav a.active {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+/* Wallet info improvements */
+.wallet-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.disconnect-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.disconnect-btn:hover .connection-status {
+  opacity: 0.8;
 }

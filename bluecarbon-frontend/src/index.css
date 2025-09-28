@@ -1,68 +1,122 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Theme Colors */
+  --primary-dark: #1a2035;
+  --primary-light: #1f2940;
+  --text-primary: rgba(255, 255, 255, 0.87);
+  --text-on-accent: #ffffff;
+  --text-on-danger: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --accent-color: #3a8fff;
+  --accent-hover: #2574db;
+  --danger-color: #dc3545;
+  --danger-hover: #bb2d3b;
+  
+  /* Gradients */
+  --bg-gradient: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+  --accent-gradient: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+  --glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --glow-gradient: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 50%);
+  
+  /* Glass Effect */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(10px);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  --glass-shadow-hover: 0 12px 36px 0 rgba(0, 0, 0, 0.3);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+  
+  /* Buttons & Controls */
+  --button-shadow: 0 4px 12px rgba(58, 143, 255, 0.2);
+  --button-shadow-hover: 0 8px 16px rgba(58, 143, 255, 0.3);
+  --border-radius: 12px;
+  
+  /* Layout */
+  --max-width: 1200px;
+  --header-height: 70px;
+  --sidebar-width: 250px;
+  
+  /* Transitions */
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-duration: 0.3s;
+  
+  /* Font */
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  
+  /* Rendering */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* Base Theme */
+  color-scheme: dark;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--accent-color);
   text-decoration: inherit;
+  transition: color var(--transition-duration) var(--transition-timing);
 }
 a:hover {
-  color: #535bf2;
+  color: var(--accent-hover);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: var(--text-primary);
+  margin: 0;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  border: var(--glass-border);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background: var(--glass-gradient);
+  backdrop-filter: var(--glass-blur);
+  color: var(--text-primary);
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: all var(--transition-duration) var(--transition-timing);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button:hover {
+  background: var(--glass-highlight);
+  transform: translateY(-1px);
+  box-shadow: var(--glass-shadow);
 }
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+button.primary {
+  background: var(--accent-gradient);
+  color: var(--text-on-accent);
+  border: none;
+  box-shadow: var(--button-shadow);
+}
+
+button.primary:hover {
+  box-shadow: var(--button-shadow-hover);
+  transform: translateY(-1px);
+}
+
+/* Remove light theme overrides as we're using a consistent dark theme */

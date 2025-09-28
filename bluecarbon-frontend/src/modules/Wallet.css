@@ -1,6 +1,6 @@
 .wallet-container {
   padding: 2rem;
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
 }
 
@@ -13,40 +13,46 @@
 
 .wallet-header h1 {
   margin: 0;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .connect-btn,
 .disconnect-btn {
   padding: 0.75rem 1.5rem;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.2s ease;
+  transition: all 0.2s var(--transition-timing);
 }
 
 .connect-btn {
-  background: #3498db;
-  color: white;
+  background: var(--accent-color);
+  color: var(--text-on-accent);
   border: none;
+  box-shadow: var(--button-shadow);
 }
 
 .connect-btn:hover {
-  background: #2980b9;
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--button-shadow-hover);
 }
 
 .disconnect-btn {
-  background: none;
-  border: 1px solid #e74c3c;
-  color: #e74c3c;
+  background: var(--glass-gradient);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  color: var(--danger-color);
 }
 
 .disconnect-btn:hover {
-  background: #e74c3c;
-  color: white;
+  background: var(--danger-color);
+  color: var(--text-on-danger);
+  transform: translateY(-1px);
+  box-shadow: var(--button-shadow-hover);
 }
 
 /* Wallet Overview */

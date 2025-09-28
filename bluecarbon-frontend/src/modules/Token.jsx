@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 import './Token.css';
 
 const Token = () => {
+  // Animation triggers using Intersection Observer
+  const [headerRef, headerInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [tabsRef, tabsInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [contentRef, contentInView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [selectedTab, setSelectedTab] = useState('tokens');
   const [showMintModal, setShowMintModal] = useState(false);
   const [mintAmount, setMintAmount] = useState('');
@@ -76,38 +81,69 @@ const Token = () => {
     setSelectedProject('');
   };
 
+  // Calculate statistics
+  const totalTokens = tokens.reduce((acc, token) => acc + parseInt(token.amount.replace(/,/g, '')), 0);
+  const verifiedTokens = tokens.filter(token => token.status === 'verified')
+    .reduce((acc, token) => acc + parseInt(token.amount.replace(/,/g, '')), 0);
+  const pendingTokens = totalTokens - verifiedTokens;
+
+  // Animation classes
+  const getAnimationClass = (inView) => inView ? 'animate-in' : '';
+
   return (
     <div className="token-container">
-      <div className="token-header">
-        <h1>Carbon Credit Tokens</h1>
-        <button className="mint-btn" onClick={() => setShowMintModal(true)}>
+      <div ref={headerRef} className={`token-header ${getAnimationClass(headerInView)}`}>
+        <div className="header-content">
+          <h1>Carbon Credit Tokens</h1>
+          <div className="token-stats">
+            <div className="stat-item">
+              <span className="stat-value">{totalTokens.toLocaleString()}</span>
+              <span className="stat-label">Total Credits</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-value">{verifiedTokens.toLocaleString()}</span>
+              <span className="stat-label">Verified</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-value">{pendingTokens.toLocaleString()}</span>
+              <span className="stat-label">Pending</span>
+            </div>
+          </div>
+        </div>
+        <button className="mint-btn glow-effect" onClick={() => setShowMintModal(true)}>
           <i className="fas fa-plus"></i> Mint New Tokens
         </button>
       </div>
 
-      <div className="token-tabs">
+      <div ref={tabsRef} className={`token-tabs ${getAnimationClass(tabsInView)}`}>
         <button
           className={`tab-btn ${selectedTab === 'tokens' ? 'active' : ''}`}
           onClick={() => setSelectedTab('tokens')}
         >
+          <i className="fas fa-wallet"></i>
           My Tokens
+          <span className="tab-badge">{tokens.length}</span>
         </button>
         <button
           className={`tab-btn ${selectedTab === 'projects' ? 'active' : ''}`}
           onClick={() => setSelectedTab('projects')}
         >
+          <i className="fas fa-leaf"></i>
           Available Projects
+          <span className="tab-badge">{projects.length}</span>
         </button>
         <button
           className={`tab-btn ${selectedTab === 'transactions' ? 'active' : ''}`}
           onClick={() => setSelectedTab('transactions')}
         >
+          <i className="fas fa-exchange-alt"></i>
           Transactions
+          <span className="tab-badge">{transactions.length}</span>
         </button>
       </div>
 
       {selectedTab === 'tokens' && (
-        <div className="tokens-list">
+        <div ref={contentRef} className={`tokens-list ${getAnimationClass(contentInView)}`}>
           {tokens.map(token => (
             <div key={token.id} className="token-card">
               <div className="token-info">
@@ -143,7 +179,7 @@ const Token = () => {
       )}
 
       {selectedTab === 'projects' && (
-        <div className="projects-list">
+        <div ref={contentRef} className={`projects-list ${getAnimationClass(contentInView)}`}>
           {projects.map(project => (
             <div key={project.id} className="project-card">
               <div className="project-info">
@@ -171,7 +207,7 @@ const Token = () => {
       )}
 
       {selectedTab === 'transactions' && (
-        <div className="transactions-list">
+        <div ref={contentRef} className={`transactions-list ${getAnimationClass(contentInView)}`}>
           <table className="transactions-table">
             <thead>
               <tr>
