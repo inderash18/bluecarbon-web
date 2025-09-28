@@ -1,21 +1,23 @@
 .sidebar {
   position: fixed;
   top: 0;
-  left: -250px;
-  width: 250px;
+  left: -280px;
+  width: 280px;
   height: 100%;
   background: var(--glass-gradient);
   backdrop-filter: var(--glass-blur);
   border-right: var(--glass-border);
   color: var(--text-primary);
-  transition: all 0.3s var(--transition-timing);
-  z-index: 999;
+  transition: transform 0.3s var(--transition-timing);
+  z-index: 1001;
   padding-top: 70px;
   box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar.open {
-  left: 0;
+  transform: translateX(280px);
 }
 
 .close-btn {
@@ -74,21 +76,29 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 998;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s var(--transition-timing);
+}
+
+.sidebar-overlay.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 .sidebar-header {
   display: flex;
-  justify-content: between;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: var(--glass-border);
 }
 
 .sidebar-footer {
   margin-top: auto;
   padding: 1rem;
-  border-top: 1px solid #eee;
+  border-top: var(--glass-border);
 }
 
 .app-version {
