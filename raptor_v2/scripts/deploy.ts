@@ -1,19 +1,17 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const [owner] = await ethers.getSigners();
+  const [deployer] = await ethers.getSigners();
+  console.log("Deploying with account:", deployer.address);
 
-  // Get the contract factory
   const CarbonCreditToken = await ethers.getContractFactory("CarbonCreditToken");
 
-  // Correct way to pass constructor argument in ethers v6:
-  const token = await CarbonCreditToken.deploy([owner.address]); // wrap in array
+  // Deploy contract, passing the deployer as owner
+  const token = await CarbonCreditToken.deploy(deployer.address);
 
-  await token.waitForDeployment(); // ethers v6 uses waitForDeployment
-
-  console.log("✅ CarbonCreditToken deployed successfully!");
-  console.log("📜 Contract Address:", token.target);
-  console.log("👤 Owner Address:", owner.address);
+  // No need to call token.deployed() in ethers v6
+  console.log("✅ CarbonCreditToken deployed at:", token.target); // in v6, 'target' has the contract address
+  console.log("👤 Owner address:", deployer.address);
 }
 
 main().catch((error) => {

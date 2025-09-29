@@ -7,11 +7,13 @@ load_dotenv()
 
 RPC_URL = os.getenv("RPC_URL", "http://127.0.0.1:8545")
 CONTRACT_ADDRESS = os.getenv("CONTRACT_ADDRESS")  # e.g., 0x5FbD...
-CONTRACT_ABI_PATH = os.getenv("CONTRACT_ABI_PATH", "artifacts/contracts/CarbonCreditToken.sol/CarbonCreditToken.json")
+CONTRACT_ABI_PATH = os.getenv("CONTRACT_ABI_PATH", "bluecarbon-backend/raptor_v2/artifacts/contracts/CarbonCreditToken.sol/CarbonCreditToken.json")
+OWNER_ADDRESS = os.getenv("OWNER_ADDRESS")
+PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 
 # Connect to local Hardhat node
 w3 = Web3(Web3.HTTPProvider(RPC_URL))
-assert w3.isConnected(), "Failed to connect to blockchain!"
+assert w3.is_connected(), "Failed to connect to blockchain!"
 
 # Load ABI
 with open(CONTRACT_ABI_PATH) as f:
@@ -25,15 +27,22 @@ contract = w3.eth.contract(address=CONTRACT_ADDRESS, abi=abi)
 def get_owner():
     return contract.functions.owner().call()
 
+def get_balance(address: str):
+    # Ensure the address is checksummed
+    checksummed_address = w3.to_checksum_address(address)
+    return contract.functions.balanceOf(checksummed_address).call()
+
 # Example function to mint tokens
-def mint_tokens(to_address: str, amount: int, private_key: str):
-    account = w3.eth.account.from_key(private_key)
+def mint_tokens(to_address: str, amount: int):
+    account = w3.eth.account.from_key(PRIVATE_KEY)
+    if account.address.lower() != OWNER_ADDRESS.lower():
+        raise ValueError("The provided PRIVATE_KEY does not correspond to the OWNER_ADDRESS")
     txn = contract.functions.mint(to_address, amount).build_transaction({
-        "from": account.address,
-        "nonce": w3.eth.get_transaction_count(account.address),
+        "from": OWNER_ADDRESS,
+        "nonce": w3.eth.get_transaction_count(OWNER_ADDRESS),
         "gas": 200000,
-        "gasPrice": w3.toWei('1', 'gwei')
+        "gasPrice": w3.to_wei('1', 'gwei')
     })
     signed_txn = account.sign_transaction(txn)
-    tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
-    return w3.toHex(tx_hash)
+    tx_hash = w3.eth.send_raw_transaction(signed_txn.raw_transaction)
+    return w3.to_hex(tx_hash)
