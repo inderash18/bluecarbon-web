@@ -39,15 +39,15 @@ This project leverages Ethereum-compatible blockchain to:
 
   Installation process for the Backend:
 
-  1.Clone the repository:
-  git clone https://github.com/yourusername/bluecarbon-token.git
-  cd bluecarbon-token
+  1.Clone the repository:  
+    "git clone https://github.com/yourusername/bluecarbon-token.git
+  cd bluecarbon-token"
 
   2. Install dependencies:
-     npm install
+     	"npm install"
 
  3.Run Hardhat:
-   npx hardhat node
+   	"npx hardhat node"
 
 4. Initialize local accounts:(In another terminal parallel )
-   npx hardhat run scripts/deploy.ts --network localhost
+   	"npx hardhat run scripts/deploy.ts --network localhost"
