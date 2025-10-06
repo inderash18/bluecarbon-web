@@ -1,0 +1,356 @@
+/* Login.css - Professional Banking Style */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.login-card {
+  background: rgba(242, 240, 240, 0.98);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+    
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Professional subtle border animation */
+.login-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: 17px;
+ 
+}
+
+@keyframes borderRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #5e6cad, #342642);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 auto 20px;
+ 
+}
+
+.brand h1 {
+  color: #1a202c;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.tag {
+  color: #718096;
+  font-size: 15px;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-group label {
+  color: #4a5568;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.input-group input {
+  padding: 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.25s ease;
+  background: #ffffff;
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-weight: 500;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 
+    0 0 0 3px rgba(102, 126, 234, 0.08),
+    0 4px 16px rgba(102, 126, 234, 0.08);
+  background: #ffffff;
+}
+
+.input-group input::placeholder {
+  color: #a0aec0;
+  font-family: inherit;
+  font-weight: 400;
+}
+
+.pin-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pin-row input {
+  flex: 1;
+  padding-right: 52px;
+  letter-spacing: 4px;
+  font-size: 18px;
+}
+
+.toggle-pin {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #718096;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-pin:hover {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.08);
+}
+
+.error {
+  background: #fed7d7;
+  color: #c53030;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: 1px solid #feb2b2;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.btn {
+  padding: 16px 28px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex: 1;
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 
+    0 4px 12px rgba(102, 126, 234, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 20px rgba(102, 126, 234, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn.primary:active {
+  transform: translateY(0);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: #718096;
+  border: 1.5px solid #e2e8f0;
+  font-weight: 500;
+}
+
+.btn.ghost:hover {
+  background: #f8fafc;
+  border-color: #cbd5e0;
+  color: #4a5568;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.links a {
+  color: #667eea;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.links a:hover {
+  color: #764ba2;
+  background: rgba(102, 126, 234, 0.06);
+  text-decoration: none;
+}
+
+/* Remove all blob animations and animated background */
+.animated-bg,
+.blob,
+.b1,
+.b2,
+.b3 {
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+
+  
+  .brand h1 {
+    font-size: 24px;
+  }
+  
+  .logo {
+    width: 56px;
+    height: 56px;
+    font-size: 18px;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+  
+  .btn {
+    padding: 14px 24px;
+  }
+}
+
+/* Enhanced focus styles for accessibility */
+.btn:focus,
+.toggle-pin:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+
+
+/* Loading state for buttons */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .login-card {
+    background: white;
+    border: 2px solid #1a202c;
+  }
+  
+  .input-group input {
+    border-color: #1a202c;
+  }
+  
+  .brand h1 {
+    color: #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .login-card::before {
+    animation: none;
+  }
+  
+  .btn,
+  .input-group input,
+  .toggle-pin {
+    transition: none;
+  }
+  
+  .btn.primary:hover {
+    transform: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .login-page {
+    background: 
+      
+      url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2811&q=80') center/cover;
+  }
+  
+.login-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+  
+  .tag {
+    color: #a0aec0;
+  }
+  
+  .input-group label {
+    color: #e2e8f0;
+  }
+  
+  .input-group input {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #f7fafc;
+  }
+  
+  .input-group input:focus {
+
+    background: #4c576a;
+  }
+  
+  
+
+}

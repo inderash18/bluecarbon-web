@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 
@@ -13,10 +13,16 @@ const Sidebar = ({ isOpen, onClose }) => {
     { path: '/webcam', label: 'WebCam', icon: 'fas fa-camera' }
   ];
 
-  // Close sidebar when route changes (useful for mobile)
+  // Close sidebar when route changes (useful for mobile).
+  // Don't run on initial mount — only when the pathname actually changes
+  // and the sidebar is currently open.
+  const _initialPath = useRef(location.pathname);
   useEffect(() => {
-    onClose();
-  }, [location.pathname, onClose]);
+    if (location.pathname !== _initialPath.current && isOpen) {
+      onClose();
+    }
+    _initialPath.current = location.pathname;
+  }, [location.pathname, isOpen, onClose]);
 
   // Close sidebar on escape key press
   useEffect(() => {

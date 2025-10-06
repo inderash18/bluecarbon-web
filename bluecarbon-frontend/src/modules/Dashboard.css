@@ -3,6 +3,7 @@
   min-height: 100vh;
   background: var(--bg-gradient);
   padding: 2rem;
+  color: var(--text-primary);
 }
 
 .dashboard-header {
@@ -80,15 +81,14 @@
 }
 
 .stat-card {
-  background: white;
-  border-radius: 20px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--glass-bg);
+  border-radius: 16px;
+  padding: 1.25rem;
+  transition: transform 0.28s var(--transition-timing), box-shadow 0.28s ease;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.95);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .stat-card::before {
@@ -169,10 +169,11 @@
 }
 
 .chart-card {
-  background: white;
-  border-radius: 20px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: var(--glass-bg);
+  border-radius: 16px;
+  padding: 1.25rem;
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .chart-header {
@@ -233,10 +234,11 @@
 }
 
 .activities-section, .projects-section {
-  background: white;
-  border-radius: 20px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: var(--glass-bg);
+  border-radius: 16px;
+  padding: 1.25rem;
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .activities-section {
@@ -371,10 +373,11 @@
 }
 
 .project-card {
-  border: 1px solid #e0e6ed;
-  border-radius: 15px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: transform 0.25s var(--transition-timing), box-shadow 0.25s ease;
+  border: var(--glass-border);
+  background: rgba(255,255,255,0.03);
 }
 
 .project-card:hover {
@@ -410,16 +413,16 @@
 }
 
 .project-badge {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 1.25rem;
-  margin-right: 1rem;
+  color: var(--text-on-accent);
+  font-size: 1rem;
+  margin-right: 0.75rem;
 }
 
 .project-info h3 {

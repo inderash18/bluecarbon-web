@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 
 const Header = ({ onToggleSidebar }) => {
@@ -79,6 +79,27 @@ const Header = ({ onToggleSidebar }) => {
     return location.pathname === path ? 'active' : '';
   };
 
+  const navigate = useNavigate();
+  // Check app auth (set by login)
+  const [isAuthed, setIsAuthed] = useState(() => {
+    try { return !!localStorage.getItem('bc_auth'); } catch { return false; }
+  });
+
+  useEffect(() => {
+    const handler = () => {
+      try { setIsAuthed(!!localStorage.getItem('bc_auth')); } catch { setIsAuthed(false); }
+    };
+    // simple listener for storage changes
+    window.addEventListener('storage', handler);
+    return () => window.removeEventListener('storage', handler);
+  }, []);
+
+  const logout = () => {
+    try { localStorage.removeItem('bc_auth'); } catch {}
+    setIsAuthed(false);
+    navigate('/login');
+  };
+
   return (
     <header className="header">
       <div className="header-left">
@@ -110,27 +131,35 @@ const Header = ({ onToggleSidebar }) => {
       </nav>
 
       <div className="header-right">
-        {isConnected ? (
-          <div className="wallet-info">
-            <span className="wallet-address" title={walletAddress}>
-              {`${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`}
-            </span>
-            <button 
-              className="disconnect-btn" 
-              onClick={disconnectWallet}
-              aria-label="Disconnect wallet"
-            >
-              <div className="connection-status connected">
-                <span className="status-dot"></span>
-                Connected
-              </div>
+        {isAuthed ? (
+          <div className="auth-area">
+            <button className="logout-btn" onClick={logout} aria-label="Logout">
+              Logout
             </button>
           </div>
         ) : (
-          <button className="connect-wallet-btn" onClick={connectWallet}>
-            Connect Wallet
-          </button>
-        )}
+          (isConnected ? (
+            <div className="wallet-info">
+              <span className="wallet-address" title={walletAddress}>
+                {`${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`}
+              </span>
+              <button 
+                className="disconnect-btn" 
+                onClick={disconnectWallet}
+                aria-label="Disconnect wallet"
+              >
+                <div className="connection-status connected">
+                  <span className="status-dot"></span>
+                  Connected
+                </div>
+              </button>
+            </div>
+          ) : (
+            <button className="connect-wallet-btn" onClick={connectWallet}>
+              Connect Wallet
+            </button>
+          )))
+        }
       </div>
     </header>
   );

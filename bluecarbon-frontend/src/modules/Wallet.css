@@ -29,7 +29,7 @@
 }
 
 .connect-btn {
-  background: var(--accent-color);
+  background: var(--accent-gradient);
   color: var(--text-on-accent);
   border: none;
   box-shadow: var(--button-shadow);
@@ -42,7 +42,7 @@
 }
 
 .disconnect-btn {
-  background: var(--glass-gradient);
+  background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   color: var(--danger-color);
@@ -61,10 +61,11 @@
 }
 
 .wallet-card {
-  background: white;
+  background: var(--glass-bg);
   border-radius: 10px;
   padding: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--glass-shadow);
+  border: var(--glass-border);
 }
 
 .card-header {
@@ -74,31 +75,12 @@
   margin-bottom: 1rem;
 }
 
-.card-header h3 {
-  margin: 0;
-  color: #2c3e50;
-}
+.card-header h3 { margin: 0; color: var(--text-primary); }
 
-.copy-btn {
-  background: none;
-  border: none;
-  color: #3498db;
-  cursor: pointer;
-  padding: 0.5rem;
-}
+.copy-btn { background: none; border: none; color: var(--accent-color); cursor: pointer; padding: 0.5rem; }
+.copy-btn:hover { color: var(--accent-hover); }
 
-.copy-btn:hover {
-  color: #2980b9;
-}
-
-.address {
-  font-family: monospace;
-  background: #f8f9fa;
-  padding: 1rem;
-  border-radius: 5px;
-  color: #2c3e50;
-  margin: 0 0 1.5rem;
-}
+.address { font-family: monospace; background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 5px; color: var(--text-primary); margin: 0 0 1.5rem; }
 
 .balances {
   display: grid;
@@ -107,26 +89,11 @@
   margin-bottom: 2rem;
 }
 
-.balance-item {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  text-align: center;
-}
+.balance-item { background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; text-align: center; }
 
-.balance-item .label {
-  display: block;
-  color: #6c757d;
-  font-size: 0.875rem;
-  margin-bottom: 0.5rem;
-}
+.balance-item .label { display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem; }
 
-.balance-item .value {
-  display: block;
-  color: #2c3e50;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
+.balance-item .value { display: block; color: var(--text-primary); font-size: 1.5rem; font-weight: 600; }
 
 .wallet-actions {
   display: grid;
@@ -136,10 +103,10 @@
 
 .action-btn {
   padding: 1rem;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background: rgba(255,255,255,0.02);
+  border: var(--glass-border);
   border-radius: 8px;
-  color: #2c3e50;
+  color: var(--text-primary);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -148,24 +115,11 @@
   transition: all 0.2s ease;
 }
 
-.action-btn i {
-  font-size: 1.5rem;
-  color: #3498db;
-}
-
-.action-btn:hover {
-  background: #e3f2fd;
-  border-color: #3498db;
-}
+.action-btn i { font-size: 1.5rem; color: var(--accent-color); }
+.action-btn:hover { background: rgba(52,152,219,0.05); border-color: var(--accent-color); }
 
 /* Wallet Tabs */
-.wallet-tabs {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #e9ecef;
-  padding-bottom: 1rem;
-}
+.wallet-tabs { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: var(--glass-border); padding-bottom: 1rem; }
 
 .tab-btn {
   padding: 0.75rem 1.5rem;
@@ -178,24 +132,9 @@
   border-radius: 5px;
 }
 
-.tab-btn:hover {
-  background: #f8f9fa;
-  color: #2c3e50;
-}
-
-.tab-btn.active {
-  background: #e3f2fd;
-  color: #3498db;
-}
-
-/* Transactions */
-.transactions-list {
-  background: white;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  overflow-x: auto;
-}
+.tab-btn { padding: 0.75rem 1.5rem; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-weight: 500; transition: all 0.2s ease; border-radius: 5px; }
+.tab-btn:hover { background: rgba(255,255,255,0.02); color: var(--text-primary); }
+.tab-btn.active { background: rgba(52,152,219,0.05); color: var(--accent-color); }
 
 .transactions-table {
   width: 100%;

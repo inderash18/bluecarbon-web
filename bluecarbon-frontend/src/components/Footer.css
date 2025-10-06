@@ -1,7 +1,13 @@
 .footer {
-  background-color: #f8f9fa; /* light gray background */
+  background: transparent;
+  backdrop-filter: var(--glass-blur);
+  border-top: var(--glass-border);
   text-align: center;
-  padding: 1rem 0;
+  padding: 0.75rem 0;
   font-size: 0.9rem;
-  color: #555;
+  color: var(--text-secondary);
 }
+
+.footer a { color: var(--accent-color); text-decoration: none; }
+
+.footer .footer-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 1rem; }
