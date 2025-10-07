@@ -11,13 +11,13 @@
   --danger-color: #dc3545;
   --danger-hover: #bb2d3b;
   --success-color: #2ecc71;
-  --muted: rgba(255,255,255,0.6);
+  --muted: rgba(255, 255, 255, 0.6);
   
   /* Gradients */
   --bg-gradient: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
   --accent-gradient: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
   --glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-  --glow-gradient: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 50%);
+  --glow-gradient: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
   
   /* Glass Effect */
   --glass-bg: rgba(255, 255, 255, 0.1);
@@ -41,11 +41,6 @@
   --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-duration: 0.3s;
   
-  /* Font */
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  
   /* Rendering */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -54,18 +49,10 @@
   
   /* Base Theme */
   color-scheme: dark;
-  color: var(--text-primary);
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
 }
 
-a {
-  font-weight: 500;
-  color: var(--accent-color);
-  text-decoration: inherit;
-  transition: color var(--transition-duration) var(--transition-timing);
-}
-a:hover {
-  color: var(--accent-hover);
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -74,6 +61,20 @@ body {
   min-height: 100vh;
   background: var(--bg-gradient);
   color: var(--text-primary);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+a {
+  font-weight: 500;
+  color: var(--accent-color);
+  text-decoration: inherit;
+  transition: color var(--transition-duration) var(--transition-timing);
+}
+
+a:hover {
+  color: var(--accent-hover);
 }
 
 h1 {
@@ -121,20 +122,23 @@ button.primary:hover {
   transform: translateY(-1px);
 }
 
-/* Remove light theme overrides as we're using a consistent dark theme */
-
-/*
-  Global text color guard
-  Ensure all visible text uses the theme text color so it remains readable
-  This forces components with hard-coded dark colors to inherit the theme color.
-  Use sparingly - if a component intentionally needs a different color, override it
-  with a more specific selector in its stylesheet.
-*/
-html, body, #root, body * {
-  color: var(--text-primary) !important;
-}
-
 /* Form controls should inherit the visible text color */
 input, textarea, select, button {
   color: inherit;
+}
+
+/* Optional: Add styles for better form control appearance in dark theme */
+input, textarea, select {
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 0.5em;
+  color: var(--text-primary);
+  backdrop-filter: var(--glass-blur);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  border-color: var(--accent-color);
 }

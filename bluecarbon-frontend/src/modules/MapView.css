@@ -163,6 +163,13 @@
 .map-container-wrapper {
   flex: 1;
   position: relative;
+  display: flex;
+  flex-direction: column;
+    border: 10px solid var();
+    border-radius: 10px var();
+
+    padding: 18px;
+
 }
 
 .map-container {
