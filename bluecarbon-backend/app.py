@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from raptor_dll import get_owner, mint_tokens, get_balance
+from raptor_dll import get_owner, mint_tokens, get_balance, transfer_tokens
 import os
 from dotenv import load_dotenv
 
@@ -31,6 +31,24 @@ def balance(address):
     try:
         bal = get_balance(address)
         return jsonify({"address": address, "balance": bal})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# New route for transferring tokens
+@app.route("/transfer", methods=["POST"])
+def transfer():
+    data = request.get_json()
+    from_address = data.get("from_address")
+    private_key = data.get("private_key")
+    to_address = data.get("to_address")
+    amount = data.get("amount")
+
+    if not all([from_address, private_key, to_address, amount]):
+        return jsonify({"error": "Missing required fields"}), 400
+    try:
+        tx_hash = transfer_tokens(from_address, private_key, to_address, amount)
+        return jsonify({"tx_hash": tx_hash})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

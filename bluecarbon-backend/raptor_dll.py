@@ -36,10 +36,26 @@ def get_balance(address: str):
 def mint_tokens(to_address: str, amount: int):
     account = w3.eth.account.from_key(PRIVATE_KEY)
     if account.address.lower() != OWNER_ADDRESS.lower():
-        raise ValueError("The provided PRIVATE_KEY does not correspond to the OWNER_ADDRESS")
-    txn = contract.functions.mint(to_address, amount).build_transaction({
+        raise ValueError("The PRIVATE_KEY does not correspond to the OWNER_ADDRESS")
+    to_address_checksum = w3.to_checksum_address(to_address)
+    txn = contract.functions.mint(to_address_checksum, amount).build_transaction({
         "from": OWNER_ADDRESS,
         "nonce": w3.eth.get_transaction_count(OWNER_ADDRESS),
+        "gas": 200000,
+        "gasPrice": w3.to_wei('1', 'gwei')
+    })
+    signed_txn = account.sign_transaction(txn)
+    tx_hash = w3.eth.send_raw_transaction(signed_txn.raw_transaction)
+    return w3.to_hex(tx_hash)
+
+def transfer_tokens(from_address: str, private_key: str, to_address: str, amount: int):
+    account = w3.eth.account.from_key(private_key)
+    if account.address.lower() != from_address.lower():
+        raise ValueError("The provided private_key does not correspond to the from_address")
+    to_address_checksum = w3.to_checksum_address(to_address)
+    txn = contract.functions.transfer(to_address_checksum, amount).build_transaction({
+        "from": from_address,
+        "nonce": w3.eth.get_transaction_count(from_address),
         "gas": 200000,
         "gasPrice": w3.to_wei('1', 'gwei')
     })
